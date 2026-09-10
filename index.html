@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ember & Spice | Bold Flavors. Warm Moments.</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #080808;
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5, 5, 5, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(245, 166, 35, 0.15);
+    z-index: 1000;
+}
+
+.logo {
+    color: #f5a623;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+nav a {
+    color: #eee;
+    text-decoration: none;
+    margin-left: 22px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #f5a623;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+    padding: 130px 25px 80px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #9a3d00 0%,
+            #571c00 20%,
+            #260d00 42%,
+            #080808 75%
+        );
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.hero h1 {
+    color: #f5a623;
+    font-size: clamp(55px, 14vw, 105px);
+    line-height: 0.95;
+    margin-bottom: 25px;
+    letter-spacing: -3px;
+    text-shadow: 0 8px 35px rgba(245, 166, 35, 0.18);
+}
+
+.hero h2 {
+    font-size: clamp(21px, 5vw, 36px);
+    font-weight: normal;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+}
+
+.hero p {
+    color: #d0d0d0;
+    max-width: 650px;
+    margin: 0 auto 40px;
+    line-height: 1.9;
+    font-size: 16px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.button {
+    display: inline-block;
+
+    background: #f5a623;
+    color: #111;
+
+    padding: 16px 32px;
+
+    border-radius: 50px;
+
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+
+    box-shadow: 0 10px 30px rgba(245, 166, 35, 0.18);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.button:hover {
+    transform: translateY(-3px);
+    background: #ffb83e;
+    box-shadow: 0 15px 35px rgba(245, 166, 35, 0.28);
+}
+
+/* =========================
+   GENERAL SECTIONS
+========================= */
+
+section {
+    padding: 105px 7%;
+}
+
+.title {
+    text-align: center;
+
+    color: #f5a623;
+
+    font-size: clamp(34px, 6vw, 48px);
+
+    margin-bottom: 60px;
+
+    letter-spacing: 1px;
+}
+
+.title::after {
+    content: "";
+    display: block;
+
+    width: 55px;
+    height: 2px;
+
+    background: #f5a623;
+
+    margin: 15px auto 0;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu {
+    background: #0e0e0e;
+}
+
+.category {
+    max-width: 1050px;
+    margin: 0 auto 70px;
+}
+
+.category:last-child {
+    margin-bottom: 0;
+}
+
+.category h3 {
+    color: #fff;
+
+    font-size: 27px;
+
+    margin-bottom: 25px;
+
+    border-left: 4px solid #f5a623;
+
+    padding-left: 15px;
+
+    letter-spacing: 0.5px;
+}
+
+/* MENU CARDS */
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 25px;
+
+    padding: 25px;
+
+    margin-bottom: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #191919,
+            #121212
+        );
+
+    border: 1px solid #272727;
+
+    border-radius: 14px;
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.menu-item:hover {
+    transform: translateY(-4px);
+
+    border-color: rgba(245, 166, 35, 0.65);
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d1d1d,
+            #151515
+        );
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.35);
+}
+
+.menu-item h4 {
+    color: #fff;
+
+    font-size: 19px;
+
+    margin-bottom: 7px;
+}
+
+.menu-item p {
+    color: #999;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    max-width: 650px;
+}
+
+.price {
+    color: #f5a623;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    font-size: 16px;
+
+    background: rgba(245, 166, 35, 0.08);
+
+    padding: 8px 12px;
+
+    border-radius: 8px;
+}
+
+/* =========================
+   ABOUT
+========================= */
+
+.about {
+    text-align: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #151515,
+            #111
+        );
+}
+
+.about p {
+    max-width: 760px;
+
+    margin: auto;
+
+    color: #aaa;
+
+    line-height: 2;
+
+    font-size: 17px;
+}
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact {
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #451700 0%,
+            #210b00 28%,
+            #080808 70%
+        );
+}
+
+.contact p {
+    color: #aaa;
+
+    margin-bottom: 30px;
+
+    font-size: 16px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 35px 20px;
+
+    text-align: center;
+
+    background: #030303;
+
+    color: #666;
+
+    font-size: 13px;
+
+    letter-spacing: 0.5px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    nav {
+        padding: 17px 5%;
+    }
+
+    .logo {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    nav a {
+        margin-left: 9px;
+        font-size: 11px;
+    }
+
+    section {
+        padding: 85px 6%;
+    }
+
+    .hero {
+        padding: 120px 20px 75px;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .title {
+        margin-bottom: 45px;
+    }
+
+    .category {
+        margin-bottom: 55px;
+    }
+
+    .category h3 {
+        font-size: 24px;
+    }
+
+    .menu-item {
+        align-items: flex-start;
+
+        padding: 20px;
+
+        gap: 15px;
+    }
+
+    .menu-item h4 {
+        font-size: 17px;
+    }
+
+    .menu-item p {
+        font-size: 13px;
+    }
+
+    .price {
+        font-size: 13px;
+        padding: 7px 9px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <div class="logo">
+        EMBER & SPICE
+    </div>
+
+    <div>
+        <a href="#menu">Menu</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>Ember & Spice</h1>
+
+        <h2>Bold Flavors. Warm Moments.</h2>
+
+        <p>
+            Where fire meets flavor. Discover beautifully crafted
+            dishes, bold Nigerian-inspired tastes, and an atmosphere
+            made for unforgettable moments.
+        </p>
+
+        <a href="#menu" class="button">
+            Explore Our Menu
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- MENU -->
+
+<section class="menu" id="menu">
+
+    <h2 class="title">
+        Our Menu
+    </h2>
+
+
+    <!-- STARTERS -->
+
+    <div class="category">
+
+        <h3>Starters</h3>
+
+        <div class="menu-item">
+
+            <div>
+                <h4>Spiced Chicken Wings</h4>
+
+                <p>
+                    Flame-grilled wings with our signature pepper glaze.
+                </p>
+            </div>
+
+            <span class="price">
+                ₦7,500
+            </span>
+
+        </div>
+
+
+        <div class="menu-item">
+
+            <div>
+                <h4>Ember Pepper Soup</h4>
+
+                <p>
+                    Rich, aromatic pepper soup with fresh herbs and spices.
+                </p>
+            </div>
+
+            <span class="price">
+                ₦6,000
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- MAIN COURSES -->
+
+    <div class="category">
+
+        <h3>Main Courses</h3>
+
+
+        <div class="menu-item">
+
+            <div>
+                <h4>Spicy Jollof Bowl</h4>
+
+                <p>
+                    Rich Nigerian jollof rice with grilled chicken
+                    and vegetables.
+                </p>
+            </div>
+
+            <span class="price">
+                ₦8,500
+            </span>
+
+        </div>
+
+
+        <div class="menu-item">
+
+            <div>
+                <h4>Ember Chicken</h4>
+
+                <p>
+                    Flame-grilled chicken with our house pepper
+                    and honey sauce.
+                </p>
+            </div>
+
+            <span class="price">
+                ₦12,000
+            </span>
+
+        </div>
+
+
+        <div class="menu-item">
+
+            <div>
+                <h4>Smoky Ember Steak</h4>
+
+                <p>
+                    Tender grilled steak finished with our signature
+                    smoky spice blend.
+                </p>
+            </div>
+
+            <span class="price">
+                ₦18,500
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- DRINKS -->
+
+    <div class="category">
+
+        <h3>Drinks</h3>
+
+
+        <div class="menu-item">
+
+            <div>
+                <h4>Fresh Pineapple Juice</h4>
+
+                <p>
+                    Freshly pressed pineapple served chilled.
+                </p>
+            </div>
+
+            <span class="price">
+                ₦3,000
+            </span>
+
+        </div>
+
+
+        <div class="menu-item">
+
+            <div>
+                <h4>Ginger Citrus Cooler</h4>
+
+                <p>
+                    Refreshing ginger, citrus and mint blend.
+                </p>
+            </div>
+
+            <span class="price">
+                ₦3,500
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section class="about" id="about">
+
+    <h2 class="title">
+        Our Story
+    </h2>
+
+    <p>
+        Ember & Spice was created for people who believe great food
+        should be more than a meal. Every dish combines bold
+        ingredients, fire, creativity, and passion.
+    </p>
+
+</section>
+
+
+<!-- CONTACT -->
+
+<section class="contact" id="contact">
+
+    <h2 class="title">
+        Come Dine With Us
+    </h2>
+
+    <p>
+        Ready for something unforgettable?
+    </p>
+
+    <a class="button" href="https://wa.me/2348000000000">
+        Reserve a Table
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 Ember & Spice
+
+</footer>
+
+</body>
+</html>
