@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ember & Spice | Bold Flavors. Warm Moments.</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: #080808;
+    color: #fff;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: rgba(5, 5, 5, 0.78);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid rgba(245, 166, 35, 0.18);
+    z-index: 1000;
+}
+
+.logo {
+    color: #f5a623;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.nav-links a {
+    color: #ddd;
+    font-size: 13px;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: #f5a623;
+}
+
+.nav-button {
+    background: #f5a623;
+    color: #111 !important;
+    padding: 10px 17px;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    min-height: 100vh;
+    padding: 140px 7% 90px;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        radial-gradient(
+            circle at 75% 45%,
+            rgba(245, 111, 0, 0.45),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 20% 70%,
+            rgba(120, 35, 0, 0.35),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #050505,
+            #160700,
+            #080808
+        );
+}
+
+.hero-content {
+    max-width: 1250px;
+    width: 100%;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.hero-text {
+    animation: heroIn 1s ease forwards;
+}
+
+.eyebrow {
+    color: #f5a623;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(58px, 9vw, 110px);
+    line-height: 0.9;
+    letter-spacing: -4px;
+    margin-bottom: 30px;
+}
+
+.hero h1 span {
+    color: #f5a623;
+}
+
+.hero h2 {
+    font-size: clamp(22px, 3vw, 34px);
+    font-weight: normal;
+    margin-bottom: 22px;
+}
+
+.hero p {
+    color: #aaa;
+    max-width: 610px;
+    font-size: 16px;
+    line-height: 1.9;
+    margin-bottom: 35px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.button {
+    display: inline-block;
+    padding: 15px 28px;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.primary {
+    background: #f5a623;
+    color: #111;
+    box-shadow: 0 12px 35px rgba(245, 166, 35, 0.18);
+}
+
+.primary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 45px rgba(245, 166, 35, 0.3);
+}
+
+.secondary {
+    border: 1px solid #555;
+    color: #fff;
+}
+
+.secondary:hover {
+    border-color: #f5a623;
+    color: #f5a623;
+}
+
+
+/* =========================
+   HERO DISH VISUAL
+========================= */
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation: dishIn 1.2s ease forwards;
+}
+
+.dish {
+    width: min(420px, 80vw);
+    height: min(420px, 80vw);
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background:
+        radial-gradient(
+            circle,
+            #2b2b2b 0%,
+            #151515 55%,
+            #080808 70%
+        );
+
+    border: 12px solid #222;
+
+    box-shadow:
+        0 0 0 2px rgba(245,166,35,0.5),
+        0 0 70px rgba(245,111,0,0.25),
+        inset 0 0 50px rgba(0,0,0,0.8);
+}
+
+.dish::before {
+    content: "";
+    position: absolute;
+
+    width: 82%;
+    height: 82%;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(245,166,35,0.35);
+}
+
+.dish::after {
+    content: "";
+    position: absolute;
+
+    width: 25px;
+    height: 25px;
+
+    background: #f5a623;
+    border-radius: 50%;
+
+    box-shadow:
+        90px -120px 0 #8d3000,
+        -120px 70px 0 #bd4b00,
+        110px 80px 0 #5f2200,
+        -80px -110px 0 #f5a623;
+}
+
+.dish-center {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.dish-center small {
+    display: block;
+    color: #f5a623;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 10px;
+    margin-bottom: 12px;
+}
+
+.dish-center h3 {
+    font-size: 32px;
+    max-width: 230px;
+    line-height: 1.05;
+}
+
+.dish-center p {
+    color: #999;
+    margin-top: 12px;
+    font-size: 13px;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+section {
+    padding: 110px 7%;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 65px;
+}
+
+.section-heading span {
+    color: #f5a623;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 11px;
+}
+
+.section-heading h2 {
+    font-size: clamp(38px, 6vw, 58px);
+    margin-top: 12px;
+}
+
+.section-heading p {
+    color: #888;
+    margin-top: 15px;
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
+.features {
+    background: #0d0d0d;
+}
+
+.feature-grid {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.feature-card {
+    padding: 35px 28px;
+
+    background: linear-gradient(
+        145deg,
+        #191919,
+        #101010
+    );
+
+    border: 1px solid #272727;
+    border-radius: 18px;
+
+    transition: 0.35s;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(245,166,35,0.55);
+}
+
+.feature-number {
+    color: #f5a623;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+.feature-card h3 {
+    margin: 18px 0 10px;
+    font-size: 21px;
+}
+
+.feature-card p {
+    color: #888;
+    font-size: 14px;
+}
+
+
+/* =========================
+   MENU
+========================= */
+
+.menu {
+    background: #080808;
+}
+
+.menu-grid {
+    max-width: 1100px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.category {
+    background: #111;
+    border: 1px solid #242424;
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.category h3 {
+    color: #f5a623;
+    font-size: 25px;
+    margin-bottom: 25px;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 20px 0;
+
+    border-bottom: 1px solid #262626;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-item h4 {
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+.menu-item p {
+    color: #777;
+    font-size: 13px;
+}
+
+.price {
+    color: #f5a623;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+
+/* =========================
+   STORY
+========================= */
+
+.story {
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            #321000,
+            #0b0b0b 55%
+        );
+}
+
+.story-content {
+    max-width: 1050px;
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.story-mark {
+    height: 330px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid rgba(245,166,35,0.35);
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(245,166,35,0.12),
+            rgba(0,0,0,0.2)
+        );
+}
+
+.story-mark span {
+    font-size: 85px;
+    color: #f5a623;
+    text-shadow: 0 0 35px rgba(245,166,35,0.3);
+}
+
+.story-text span {
+    color: #f5a623;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 11px;
+}
+
+.story-text h2 {
+    font-size: clamp(38px, 5vw, 55px);
+    margin: 12px 0 20px;
+}
+
+.story-text p {
+    color: #999;
+    line-height: 2;
+}
+
+
+/* =========================
+   CONTACT
+========================= */
+
+.contact {
+    text-align: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #120600,
+            #3b1200,
+            #100500
+        );
+}
+
+.contact-box {
+    max-width: 800px;
+    margin: auto;
+}
+
+.contact h2 {
+    font-size: clamp(42px, 7vw, 70px);
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.contact p {
+    color: #bbb;
+    margin-bottom: 30px;
+}
+
+.contact-details {
+    display: flex;
+    justify-content: center;
+    gap: 35px;
+    flex-wrap: wrap;
+
+    margin-top: 35px;
+
+    color: #aaa;
+    font-size: 13px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    padding: 40px 20px;
+    background: #030303;
+    text-align: center;
+}
+
+.footer-logo {
+    color: #f5a623;
+    letter-spacing: 3px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+footer p {
+    color: #555;
+    font-size: 12px;
+}
+
+
+/* =========================
+   FLOATING WHATSAPP
+========================= */
+
+.whatsapp {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #f5a623;
+    color: #111;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+
+    z-index: 999;
+
+    transition: 0.3s;
+}
+
+.whatsapp:hover {
+    transform: scale(1.1);
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes heroIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(-45px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+}
+
+@keyframes dishIn {
+
+    from {
+        opacity: 0;
+        transform: translateX(45px) scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+
+}
+
+.feature-card,
+.category,
+.story-content {
+    animation: reveal 0.8s ease both;
+}
+
+@keyframes reveal {
+
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 800px) {
+
+    nav {
+        padding: 16px 5%;
+    }
+
+    .logo {
+        font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+    }
+
+    .nav-button {
+        display: none;
+    }
+
+    .hero {
+        padding: 125px 6% 75px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 55px;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        order: -1;
+    }
+
+    .dish {
+        width: 270px;
+        height: 270px;
+    }
+
+    .dish-center h3 {
+        font-size: 25px;
+    }
+
+    section {
+        padding: 85px 6%;
+    }
+
+    .feature-grid,
+    .menu-grid,
+    .story-content {
+        grid-template-columns: 1fr;
+    }
+
+    .story-mark {
+        height: 230px;
+    }
+
+    .story-mark span {
+        font-size: 65px;
+    }
+
+    .category {
+        padding: 23px;
+    }
+
+    .menu-item {
+        align-items: flex-start;
+    }
+
+    .contact-details {
+        gap: 15px;
+        flex-direction: column;
+    }
+
+}
+
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media (max-width: 420px) {
+
+    .hero h1 {
+        font-size: 55px;
+    }
+
+    .hero h2 {
+        font-size: 21px;
+    }
+
+    .button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .menu-item h4 {
+        font-size: 15px;
+    }
+
+    .menu-item p {
+        font-size: 12px;
+    }
+
+    .price {
+        font-size: 12px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        EMBER & SPICE
+    </div>
+
+    <div class="nav-links">
+
+        <a href="#menu">Menu</a>
+
+        <a href="#story">Our Story</a>
+
+        <a href="#contact">Contact</a>
+
+        <a href="#contact" class="nav-button">
+            Reserve
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+
+        <div class="hero-text">
+
+            <div class="eyebrow">
+                Fire. Flavor. Experience.
+            </div>
+
+            <h1>
+                Ember<br>
+                <span>& Spice</span>
+            </h1>
+
+            <h2>
+                Bold Flavors. Warm Moments.
+            </h2>
+
+            <p>
+                A modern dining experience where bold Nigerian-inspired
+                flavors meet fire, creativity, and unforgettable
+                atmosphere.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#menu" class="button primary">
+                    Explore Menu
+                </a>
+
+                <a href="#story" class="button secondary">
+                    Discover Us
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="dish">
+
+                <div class="dish-center">
+
+                    <small>
+                        Chef's Signature
+                    </small>
+
+                    <h3>
+                        Smoky Ember Steak
+                    </h3>
+
+                    <p>
+                        Flame · Spice · Flavor
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FEATURES
+========================= -->
+
+<section class="features">
+
+    <div class="section-heading">
+
+        <span>
+            The Ember Experience
+        </span>
+
+        <h2>
+            More Than A Meal
+        </h2>
+
+        <p>
+            Every detail is designed to turn dinner into an experience.
+        </p>
+
+    </div>
+
+
+    <div class="feature-grid">
+
+
+        <div class="feature-card">
+
+            <div class="feature-number">
+                01
+            </div>
+
+            <h3>
+                Bold Flavors
+            </h3>
+
+            <p>
+                Rich spices, fresh ingredients and fire-driven cooking
+                come together in every plate.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-number">
+                02
+            </div>
+
+            <h3>
+                Crafted With Fire
+            </h3>
+
+            <p>
+                Our signature dishes are finished over flame for
+                unforgettable smoky character.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-number">
+                03
+            </div>
+
+            <h3>
+                Warm Moments
+            </h3>
+
+            <p>
+                A relaxed atmosphere made for dates, celebrations,
+                friends and unforgettable evenings.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     MENU
+========================= -->
+
+<section class="menu" id="menu">
+
+    <div class="section-heading">
+
+        <span>
+            Taste The Fire
+        </span>
+
+        <h2>
+            Our Menu
+        </h2>
+
+        <p>
+            Bold plates. Fresh ingredients. Serious flavor.
+        </p>
+
+    </div>
+
+
+    <div class="menu-grid">
+
+
+        <!-- STARTERS -->
+
+        <div class="category">
+
+            <h3>
+                Starters
+            </h3>
+
+
+            <div class="menu-item">
+
+                <div>
+
+                    <h4>
+                        Spiced Chicken Wings
+                    </h4>
+
+                    <p>
+                        Flame-grilled wings with signature pepper glaze.
+                    </p>
+
+                </div>
+
+                <span class="price">
+                    ₦7,500
+                </span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div>
+
+                    <h4>
+                        Ember Pepper Soup
+                    </h4>
+
+                    <p>
+                        Rich aromatic pepper soup with fresh herbs.
+                    </p>
+
+                </div>
+
+                <span class="price">
+                    ₦6,000
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- MAIN COURSES -->
+
+        <div class="category">
+
+            <h3>
+                Main Courses
+            </h3>
+
+
+            <div class="menu-item">
+
+                <div>
+
+                    <h4>
+                        Spicy Jollof Bowl
+                    </h4>
+
+                    <p>
+                        Nigerian jollof rice with grilled chicken.
+                    </p>
+
+                </div>
+
+                <span class="price">
+                    ₦8,500
+                </span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div>
+
+                    <h4>
+                        Ember Chicken
+                    </h4>
+
+                    <p>
+                        Flame-grilled chicken with house pepper honey sauce.
+                    </p>
+
+                </div>
+
+                <span class="price">
+                    ₦12,000
+                </span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div>
+
+                    <h4>
+                        Smoky Ember Steak
+                    </h4>
+
+                    <p>
+                        Tender steak finished with our smoky spice blend.
+                    </p>
+
+                </div>
+
+                <span class="price">
+                    ₦18,500
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- DRINKS -->
+
+        <div class="category">
+
+            <h3>
+                Drinks
+            </h3>
+
+
+            <div class="menu-item">
+
+                <div>
+
+                    <h4>
+                        Fresh Pineapple Juice
+                    </h4>
+
+                    <p>
+                        Freshly pressed pineapple served chilled.
+                    </p>
+
+                </div>
+
+                <span class="price">
+                    ₦3,000
+                </span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div>
+
+                    <h4>
+                        Ginger Citrus Cooler
+                    </h4>
+
+                    <p>
+                        Ginger, citrus and fresh mint.
+                    </p>
+
+                </div>
+
+                <span class="price">
+                    ₦3,500
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- DESSERT -->
+
+        <div class="category">
+
+            <h3>
+                Dessert
+            </h3>
+
+
+            <div class="menu-item">
+
+                <div>
+
+                    <h4>
+                        Ember Chocolate Cake
+                    </h4>
+
+                    <p>
+                        Warm chocolate cake with rich cocoa glaze.
+                    </p>
+
+                </div>
+
+                <span class="price">
+                    ₦5,500
+                </span>
+
+            </div>
+
+
+            <div class="menu-item">
+
+                <div>
+
+                    <h4>
+                        Cinnamon Plantain
+                    </h4>
+
+                    <p>
+                        Caramelized plantain with cinnamon and honey.
+                    </p>
+
+                </div>
+
+                <span class="price">
+                    ₦4,500
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STORY
+========================= -->
+
+<section class="story" id="story">
+
+    <div class="story-content">
+
+
+        <div class="story-mark">
+
+            <span>
+                E&S
+            </span>
+
+        </div>
+
+
+        <div class="story-text">
+
+            <span>
+                Our Story
+            </span>
+
+            <h2>
+                Born From Fire.
+            </h2>
+
+            <p>
+                Ember & Spice was created for people who believe great
+                food should be more than a meal.
+
+                <br><br>
+
+                We combine bold ingredients, Nigerian-inspired flavors,
+                fire-driven cooking and modern hospitality to create
+                moments worth remembering.
+
+                <br><br>
+
+                Come hungry. Leave with a story.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<section class="contact" id="contact">
+
+    <div class="contact-box">
+
+        <h2>
+            Your Table Is Waiting.
+        </h2>
+
+        <p>
+            Gather your people. Choose your favorites.
+            We'll handle the fire.
+        </p>
+
+        <!-- DEMO WHATSAPP LINK -->
+
+        <a
+            href="https://wa.me/2348000000000"
+            class="button primary"
+        >
+            Reserve A Table
+        </a>
+
+
+        <div class="contact-details">
+
+            <span>
+                📍 Enugu, Nigeria
+            </span>
+
+            <span>
+                🕐 Mon – Sun · 11AM – 10PM
+            </span>
+
+            <span>
+                ☎ +234 800 000 0000
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        EMBER & SPICE
+    </div>
+
+    <p>
+        © 2026 Ember & Spice. Demo website created for portfolio purposes.
+    </p>
+
+</footer>
+
+
+<!-- =========================
+     FLOATING BUTTON
+========================= -->
+
+<a
+    href="https://wa.me/2349132752799"
+    class="whatsapp"
+    aria-label="Contact Ember & Spice on WhatsApp"
+>
+    WA
+</a>
+
+
+</body>
+</html>
